@@ -1,30 +1,38 @@
-<?php
-//process-login.php
+<?php session_start();
 
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-$dsn = "mysql:host=localhost;dbname=PersonApp;charset=utf8mb4";
-$dbusername = "root";
+$dsn = "mysql:host=localhost;dbname=immnewsnetwork;charset=utf8mb4";
+$dbusername = "root";  
 $dbpassword = "";
 
-$pdo = new PDO($dsn, $dbusername, $dbpassword); 
+$pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-$stmt = $pdo->prepare("SELECT `personId`, `username` 
-    FROM `person` 
-    WHERE `person` . `username` = '$username' AND `person` . `password` = '$password';");
+$stmt = $pdo->prepare("SELECT `personId`, `username` , `is_admin`
+	FROM `member` 
+	WHERE `username` = '$username' AND `password` = '$password';");
 $stmt->execute();
 
 if($row = $stmt->fetch()){
-	?>
-	<p>Hello, I am dashboard</p><?php
+		
 	$_SESSION["personId"] = $row['personId'];
 	$_SESSION["username"] = $row['username'];
+	$_SESSION["is_admin"] = $row['is_admin'];
 	$_SESSION["loggedIn"] = true;
-	?><a href="select-persons.php">View all persons</a><?php
-}else{
+
+	include("header.php");
+
+	if ($_SESSION["is_admin"] == 1) {		
+		header("Location: dashboard.php");
+	} else {
+		?><p>You're logged in successfully!</p><?php
+		include("logout-link.php");
+	}
 	
-	?><p>Error. <a href="login.php">Try login again</p><?php
+}else{
+	include("header.php");
+	?><p>Error. <a href="login.php">Try log in again</p><?php
 }
 
 ?>

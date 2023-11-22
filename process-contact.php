@@ -1,4 +1,5 @@
 <?php
+include("header.php");
 
 $Name = $_POST["Name"];
 $Email = $_POST["Email"];
