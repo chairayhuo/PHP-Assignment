@@ -21,6 +21,7 @@
             <li><a href="contact.php">Contact</a></li>
             <li><a href="register.php">Register</a></li>
             <li><a href="login.php">Log In</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 </header>

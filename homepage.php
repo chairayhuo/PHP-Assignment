@@ -11,7 +11,7 @@ $dbpassword = "";
 
 $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-$stmt2 = $pdo->prepare("SELECT * FROM `articles`");
+$stmt2 = $pdo->prepare("SELECT * FROM `articles` WHERE `is_featured` = 1");
 
 $stmt2->execute();
 
