@@ -23,7 +23,7 @@ $row = $stmt->fetch();
 
 <form action="update.php" method="POST">
     Article Name:<input type="text" name="articleName" value="<?=$row["articleName"]?>">
-    Article Link:<input type="text" name="articleLink" value="<?=$row["articleLink"]?>">
+    Article Link:<input type="text" name="articleAuthor" value="<?=$row["articleAuthor"]?>">
     <input type="hidden" name="articleId" value="<?= $row["articleId"] ?>">
     <input type="submit" />
 </form>

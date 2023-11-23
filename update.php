@@ -1,7 +1,7 @@
 <?php
 
-$aName = $_POST["aName"];
-$aLink = $_POST["aLink"];
+$articleName = $_POST["articleName"];
+$articleAuthor = $_POST["articleAuthor"];
 $articleId = $_POST["articleId"];
 
 $dsn = "mysql:host=localhost;dbname=immnewsnetwork;charset=utf8mb4";
@@ -13,8 +13,8 @@ $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
 //prepare
 $stmt = $pdo->prepare("UPDATE `articles` 
-	SET `aName` = '$aName', 
-	`aLink` = '$aLink'
+	SET `articleName` = '$articleName', 
+	`articleAuthor` = '$articleAuthor'
 	WHERE `articles`.`articleId` = $articleId;");
 
 //execute
