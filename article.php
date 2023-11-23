@@ -11,7 +11,6 @@ $pdo = new PDO($dsn, $dbusername, $dbpassword);
 $stmt = $pdo->prepare("SELECT * FROM `articles` WHERE `articleId` = $articleId");
 $stmt->execute();
 if($row = $stmt->fetch()){
-
   ?><article>
   <img src="pics/<?=$row["articlePicture"]?>"/>
   <h1><?=$row["articleName"]?></h1>
@@ -32,8 +31,7 @@ $stmt2->execute();
 $likeCount = (int)$stmt2->fetchColumn();
 
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
-    
-
+  
     $stmt3 = $pdo->prepare("SELECT COUNT(*) FROM `member_articles_likes` WHERE `articleId` = :articleId AND `personId` = :personId");
     $stmt3->bindParam(':articleId', $articleId, PDO::PARAM_INT);
     $stmt3->bindParam(':personId', $_SESSION['personId'], PDO::PARAM_INT);

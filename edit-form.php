@@ -1,5 +1,9 @@
-<?php
-
+<?php session_start();
+include("header.php");
+if (!isset($_SESSION['loggedIn']) || !$_SESSION['is_admin'] == '1') {
+    header("Location: login.php");
+    exit;
+}else{
 $articleId = $_GET["articleId"];
 
 $dsn = "mysql:host=localhost;dbname=immnewsnetwork;charset=utf8mb4";
@@ -26,4 +30,5 @@ $row = $stmt->fetch();
     Article Link:<input type="text" name="articleAuthor" value="<?=$row["articleAuthor"]?>">
     <input type="hidden" name="articleId" value="<?= $row["articleId"] ?>">
     <input type="submit" />
-</form>
+</form><?php
+}

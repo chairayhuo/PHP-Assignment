@@ -13,6 +13,4 @@ if (!isset($_SESSION['loggedIn']) || !$_SESSION['is_admin'] == '1') {
 <a href="featured-select.php">Set the featured article</a>
 <a href="about-edit.php">Edit About Information</a>
 <a href="contact-form.php">View Contact form submissions</a><?php
-include("logout-link.php"); ?>
-<?php
 }

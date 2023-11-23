@@ -1,4 +1,9 @@
-<?php
+<?php session_start();
+include("header.php");
+if (!isset($_SESSION['loggedIn']) || !$_SESSION['is_admin'] == '1') {
+    header("Location: login.php");
+    exit;
+}else{
 
 $dsn = "mysql:host=localhost;dbname=immnewsnetwork;charset=utf8mb4";
 $dbusername = "root";
@@ -33,4 +38,5 @@ if($row2 = $stmt2->fetch()){
 	?><p>No featured article.</p><?php
 }
 ?>
-<a href="dashboard.php">Back to dashboard</a>
+<a href="dashboard.php">Back to dashboard</a><?php
+}

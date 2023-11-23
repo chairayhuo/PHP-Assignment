@@ -1,4 +1,9 @@
-<?php
+<?php session_start();
+include("header.php");
+if (!isset($_SESSION['loggedIn']) || !$_SESSION['is_admin'] == '1') {
+    header("Location: login.php");
+    exit;
+}else{
 
 $articleName = $_POST["articleName"];
 $articleAuthor = $_POST["articleAuthor"];
@@ -24,4 +29,5 @@ if($stmt->execute()){
 	?><p>Could not UPDATE record</p><?php
 }
 ?>
-<a href="select-articles.php">Back to all records</a>
+<a href="select-articles.php">Back to all records</a><?php
+}

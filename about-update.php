@@ -1,4 +1,9 @@
-<?php
+<?php session_start();
+include("header.php");
+if (!isset($_SESSION['loggedIn']) || !$_SESSION['is_admin'] == '1') {
+    header("Location: login.php");
+    exit;
+}else{
 
 $aboutContent = $_POST["aboutContent"];
 
@@ -17,4 +22,5 @@ if($stmt->execute()){
 	?><p>Could not UPDATE record</p><?php
 }
 ?>
-<a href="dashboard.php">Back to dashboard</a>
+<a href="dashboard.php">Back to dashboard</a><?php
+}
